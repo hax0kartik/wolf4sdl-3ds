@@ -100,7 +100,7 @@ int     param_audiobuffer = 2048 / (44100 / param_samplerate);
 #else
 int     param_joystickhat = -1;
 int     param_samplerate = 44100;
-int     param_audiobuffer = 2048 / (44100 / param_samplerate);
+int     param_audiobuffer = 4096 / (44100 / param_samplerate);
 #endif
 
 int     param_mission = 0;
@@ -1621,9 +1621,9 @@ static void DemoLoop()
             UNCACHEGRCHUNK (TITLEPALETTE);
 #else
 
-          printf("SHOW TITLE\n");
-          VWB_Bar (0, 0, screenWidth, screenHeight, 0x0);     // background
-            CA_CacheScreen (TITLEPIC);
+            printf("SHOW TITLE\n");
+            VWB_Bar (0, 0, screenWidth, screenHeight, VIEWCOLOR);     // background
+            CA_CacheScreenxy (TITLEPIC, 40, 20);
             VW_UpdateScreen ();
             VW_FadeIn();
 #endif
@@ -1973,9 +1973,6 @@ int main (int argc, char *argv[])
     /* emulator
     consoleDebugInit(debugDevice_SVC);
 	stdout = stderr; */
-
-	printf("nxlink//printf\n");
-  printf("MAIN ENTRY\n");
 #if defined(_arch_dreamcast)
     DC_Init();
 #else

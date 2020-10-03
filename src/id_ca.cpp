@@ -1033,6 +1033,70 @@ void CA_CacheScreen (int chunk)
     free(bigbufferseg);
 }
 
+/*
+======================
+=
+= CA_CacheScreen
+=
+= Decompresses a chunk from disk straight onto the screen
+=
+======================
+*/
+void CA_CacheScreenxy (int chunk, int sx, int sy)
+{
+    int32_t    pos,compressed,expanded;
+    memptr  bigbufferseg;
+    int32_t    *source;
+    int             next;
+    byte *pic, *vbuf;
+    int x, y, scy, scx;
+    unsigned i, j;
+
+//
+// load the chunk into a buffer
+//
+    pos = GRFILEPOS(chunk);
+    next = chunk +1;
+    while (GRFILEPOS(next) == -1)           // skip past any sparse tiles
+        next++;
+    compressed = GRFILEPOS(next)-pos;
+
+    lseek(grhandle,pos,SEEK_SET);
+
+    bigbufferseg=malloc(compressed);
+    CHECKMALLOCRESULT(bigbufferseg);
+    read(grhandle,bigbufferseg,compressed);
+    source = (int32_t *) bigbufferseg;
+
+    expanded = *source++;
+
+//
+// allocate final space, decompress it, and free bigbuffer
+// Sprites need to have shifts made and various other junk
+//
+    pic = (byte *) malloc(64000);
+    CHECKMALLOCRESULT(pic);
+    CAL_HuffExpand((byte *) source, pic, expanded, grhuffman);
+
+    vbuf = VL_LockSurface(curSurface);
+    if(vbuf != NULL)
+    {
+        for(y = 0, scy = sy; y < 200; y++, scy += scaleFactor)
+        {
+            for(x = 0, scx = sx; x < 320; x++, scx += scaleFactor)
+            {
+                byte col = pic[(y * 80 + (x >> 2)) + (x & 3) * 80 * 200];
+                for(i = 0; i < scaleFactor; i++)
+                    for(j = 0; j < scaleFactor; j++)
+                        vbuf[(scy + i) * curPitch + scx + j] = col;
+            }
+        }
+        VL_UnlockSurface(curSurface);
+    }
+    free(pic);
+    free(bigbufferseg);
+}
+
 //==========================================================================
 
 /*

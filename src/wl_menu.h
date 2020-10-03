@@ -66,7 +66,7 @@
 #define SM_Y3   SM_Y2+5*13
 #define SM_H3   3*13-7
 
-#define CTL_X   24
+#define CTL_X   CENTERX - (160 - 24)
 #ifdef JAPAN
 #define CTL_Y   70
 #else

@@ -2029,12 +2029,12 @@ DrawCtlScreen (void)
 #else
     ClearMScreen ();
     DrawStripes (10);
-    VWB_DrawPic (80, 0, C_CONTROLPIC);
-    VWB_DrawPic (112, 184, C_MOUSELBACKPIC);
+    VWB_DrawPic (CENTERX - (160 - 80), 0, C_CONTROLPIC);
+    VWB_DrawPic (CENTERX - (160 - 112), 184, C_MOUSELBACKPIC);
     DrawWindow (CTL_X - 8, CTL_Y - 5, CTL_W, CTL_H, BKGDCOLOR);
 #endif
     WindowX = 0;
-    WindowW = 320;
+    WindowW = 400;
     SETFONTCOLOR (TEXTCOLOR, BKGDCOLOR);
 
     if (IN_JoyPresent())

@@ -1641,33 +1641,23 @@ void    ThreeDRefresh (void)
     }
     else
     {
-#ifndef REMDEBUG
-        if (fpscounter)
-        {
-            fontnumber = 0;
-            SETFONTCOLOR(7,127);
-            PrintX=4; PrintY=1;
-            VWB_Bar(0,0,50,10,bordercol);
-            US_PrintSigned(fps);
-            US_Print(" fps");
-        }
-#endif
+        //fontnumber = 0;
+       // SETFONTCOLOR(7,127);
+        //PrintX=0; PrintY=220;
+        //VWB_Bar(0,220,45,10,bordercol);
+        //US_PrintSigned(fps);
+       // US_Print(" fps");
         SDL_BlitSurface(screenBuffer, NULL, screen, NULL);
         SDL_Flip(screen);
     }
 
-#ifndef REMDEBUG
-    if (fpscounter)
-    {
-        fps_frames++;
-        fps_time+=tics;
+    //fps_frames++;
+    //fps_time+=tics;
 
-        if(fps_time>35)
-        {
-            fps_time-=35;
-            fps=fps_frames<<1;
-            fps_frames=0;
-        }
-    }
-#endif
+    //if(fps_time>35)
+    //{
+      //  fps_time-=35;
+      //  fps=fps_frames<<1;
+      //  fps_frames=0;
+    //}
 }

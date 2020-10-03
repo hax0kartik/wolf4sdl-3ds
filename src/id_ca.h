@@ -54,6 +54,7 @@ void CA_CacheGrChunk (int chunk);
 void CA_CacheMap (int mapnum);
 
 void CA_CacheScreen (int chunk);
+void CA_CacheScreenxy (int chunk, int scx, int scy);
 
 void CA_CannotOpen(const char *name);
 

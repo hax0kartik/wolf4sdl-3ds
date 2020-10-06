@@ -100,7 +100,7 @@ int     param_audiobuffer = 2048 / (44100 / param_samplerate);
 #else
 int     param_joystickhat = -1;
 int     param_samplerate = 44100;
-int     param_audiobuffer = 4096 / (44100 / param_samplerate);
+int     param_audiobuffer = 2048 / (44100 / param_samplerate);
 #endif
 
 int     param_mission = 0;
@@ -1968,7 +1968,6 @@ void CheckParameters(int argc, char *argv[])
 int main (int argc, char *argv[])
 {
     osSetSpeedupEnable(1);
-    // nxlink
     consoleDebugInit(debugDevice_CONSOLE);
     /* emulator
     consoleDebugInit(debugDevice_SVC);
@@ -1978,13 +1977,9 @@ int main (int argc, char *argv[])
 #else
     CheckParameters(argc, argv);
 #endif
-  printf("CheckParameters() DONE\n");
     CheckForEpisodes();
-  printf("CheckForEpisodes() DONE\n");
     InitGame();
-  printf("InitGame() DONE\n");
     DemoLoop();
-  printf("DemoLoop() DONE\n");
     Quit("Demo loop exited???");
     return 1;
 }

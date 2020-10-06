@@ -5,28 +5,9 @@ Port of Wolfenstein 3D to Nintendo 3DS using Wolf4SDL as a base.
 
 Runs at about 50-60 fps on both o3ds and n3ds.
 
-Requires a copy of `Wolf3d Full v1.4 GT/ID/Activision`
+Requires a copy of `Wolf3d Full v1.4 GT/ID/Activision` or `Wolf3d shareware version v1.4`
 
-Copy
-
-```
-Wolf4SDL.3dsx
-```
-and
-```
-wolf3d/audiohed.wl6
-wolf3d/audiot.wl6
-wolf3d/config.wl6
-wolf3d/gamemaps.wl6
-wolf3d/maphead.wl6
-wolf3d/savegam0.wl6
-wolf3d/vgadict.wl6
-wolf3d/vgagraph.wl6
-wolf3d/vgahead.wl6
-wolf3d/vswap.wl6
-```
-
-to `sdmc:/3ds/wolf4sdl`
+Download and copy `wolf4sdl.3dsx` or `wolf4sdl-shareware.3dsx` from the [releases](https://github.com/hax0kartik/wolf4sdl-3ds/releases/latest) page to `sdmc:/3ds/wolf4sdl` and the `*.wl6`/`*.wl1` files to `sdmc:/3ds/wolf4sdl/wolf3d/`
 
 ## Controls
 | Keys | Controls |
@@ -39,6 +20,11 @@ to `sdmc:/3ds/wolf4sdl`
 | R | Cycle through weapons (Weak > Strong) |
 | CPAD AND DPAD | Move Around |
 | START | Enter(Select in main menu) 
+
+## Building
+
+Building requires latest `ctrulib` and `sdl1.2` 3ds port.
+You can install them using dkp-pacman
 
 ## Screenshots
 
